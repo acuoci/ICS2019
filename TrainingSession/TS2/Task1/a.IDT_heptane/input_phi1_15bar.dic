@@ -1,0 +1,60 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary BatchReactor
+{
+	@KineticsFolder			..\..\Task0\kinetics-POLIMI_PRF_PAH_LT_1412;
+
+	@Type					NonIsothermal-ConstantVolume;
+
+	@InitialStatus          initial-mixture;
+
+	@EndTime				0.1 s;
+
+	@ParametricAnalysis    	parametric-analysis;
+	
+	@IgnitionDelayTimes		ignition-delay-times;
+
+	@Options				output-options;
+}
+
+Dictionary initial-mixture
+{
+	@Temperature   		1000 K; 
+	@Pressure      		15 bar;
+	@EquivalenceRatio 	1.0;
+	@FuelMoles 			NC7H16 	1.00;
+	@OxidizerMoles 		O2 		0.21
+						N2 		0.79;  
+}
+
+Dictionary parametric-analysis
+{	
+	@Type 				temperature; 
+	@NumberOfPoints     3;
+	@MinimumValue       1050 K;
+	@MaximumValue       1300 K;
+}
+
+Dictionary output-options
+{	
+	@OutputFolder   15bar;
+}
+
+Dictionary ignition-delay-times
+{
+	@Temperature	true;
+	@Pressure		true;
+	@Species		OH CH;
+}

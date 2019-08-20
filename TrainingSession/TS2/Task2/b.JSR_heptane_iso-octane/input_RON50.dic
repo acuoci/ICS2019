@@ -1,0 +1,59 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary PerfectlyStirredReactor
+{
+	@KineticsFolder			..\..\Task0\kinetics-POLIMI_PRF_PAH_LT_1412;
+
+	@Type					Isothermal-ConstantPressure;
+
+	@InletStatus            inlet-mixture;
+
+	@ResidenceTime			1.0 s;
+
+	@Volume                 30.5 cm3;
+
+	@ParametricAnalysis    	parametric-analysis;
+	@Options 				output-options;
+	@OdeParameters          ode-parameters;
+}
+
+Dictionary inlet-mixture
+{
+	@Temperature   	500.   	K ; 
+	@Pressure      	10. 	atm ;
+	@MoleFractions  IC8H18 	0.0005
+					NC7H16  0.0005
+					O2      0.01175
+					N2      0.98725;		
+}
+
+Dictionary parametric-analysis
+{	
+	@Type 				temperature; 
+	@ListOfValues       500 550 600  650  700  750 800 
+						850 900 950 1000 1050 1100 K;
+}
+
+Dictionary output-options
+{
+    @OutputFolder   Output_RON50;
+    @OutputSpecies  NC7H16 IC8H18;	
+}
+
+Dictionary ode-parameters
+{	
+	@AbsoluteTolerance 1e-14;
+	@RelativeTolerance 1e-7;
+}
