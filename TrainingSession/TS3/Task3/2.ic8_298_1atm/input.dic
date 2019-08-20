@@ -1,0 +1,55 @@
+Dictionary PremixedLaminarFlame1D
+{
+	@KineticsFolder	..\0.Preprocessing\kinetics-POLIMI_PRF_PAH_LT_1412;
+	
+	@Type			FlameSpeed;
+	
+	@InletStream 	inlet-stream;
+	@OutletStream	outlet-stream;
+	
+	@InletVelocity	40 cm/s;
+	
+	@Grid			grid;
+		
+	@Output			Output;
+	
+	@UseDaeSolver	true;
+	@DaeParameters	dae-parameters;
+}
+
+Dictionary dae-parameters
+{
+	@DaeSolver			OpenSMOKE++;
+}
+
+Dictionary inlet-stream
+{
+	@FuelMoles			IC8H18 1;
+	@OxidizerMoles		O2 0.21 N2 0.79;
+	@EquivalenceRatio	1 1.05 1.1 0.95 0.90;
+		
+	@Temperature		298 K;
+	@Pressure			1 atm;
+}
+
+Dictionary outlet-stream
+{
+	@Moles			CO2 8 
+					H2O 9  
+					N2  36;
+	@Temperature	2300 K;
+	@Pressure		1 atm;
+}
+
+Dictionary grid
+{
+	@Length					4 cm;
+	@InitialPoints			12;
+	@Type					database;
+	
+	@MaxPoints				500;
+	@MaxAdaptivePoints		15;
+	@GradientCoefficient	0.05;
+	@CurvatureCoefficient	0.50;
+	@Threshold				1e-7;
+}
