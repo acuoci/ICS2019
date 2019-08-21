@@ -1,8 +1,12 @@
 # Prerequisites
 *.d
+*.tmp
 
 # Powerpoint Files
 *.pptx
+
+# Word Files
+*.docx
 
 # Compiled Object files
 *.slo
