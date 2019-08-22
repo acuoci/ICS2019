@@ -1,6 +1,7 @@
 # Prerequisites
 *.d
 *.tmp
+*.zip
 
 # Powerpoint Files
 *.pptx
